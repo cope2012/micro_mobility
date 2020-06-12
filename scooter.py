@@ -8,6 +8,11 @@ class Scooter(Vehicle):
     def __init__(self, battery=99):
         super().__init__()
         self.__battery = battery
+        self.__needs_charge = False
+
+    @property
+    def needs_charge(self):
+        return self.__needs_charge
 
     @property
     def battery(self):
@@ -15,6 +20,8 @@ class Scooter(Vehicle):
 
     @battery.setter
     def battery(self, value):
+        self.__needs_charge = value < 15
+
         if value < 0:
             self.__battery = 0
         elif value > 100:
@@ -33,14 +40,17 @@ class Scooter(Vehicle):
         else:
             self._current_speed = value
 
-    def _check_battery(self):
-        return self.__battery >= 15
-
     def begin_ride(self):
         super().begin_ride()
 
+    def back_to_service(self):
+        if not self.needs_charge:
+            super().back_to_service()
+        else:
+            print('The scooter needs charge, can\'t leave warehouse')
+
     def unlock(self):
-        if self._check_battery():
+        if not self.needs_charge:
             super().unlock()
         else:
             print('This scooter has no enough battery, please charge it')
@@ -50,4 +60,6 @@ class Scooter(Vehicle):
             self.battery -= 17
 
     def charge(self):
-        self.__battery = Scooter.__FULL_CHARGE
+        if self.status == 'in-warehouse':
+            self.__battery = Scooter.__FULL_CHARGE
+            self.__needs_charge = False

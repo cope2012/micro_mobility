@@ -18,6 +18,30 @@ class Vehicle:
         else:
             print(f'{self.__status} to \'unlocked\' is not a valid transition')
 
+    def pick_up(self):
+        if self.__status == 'locked':
+            self.__status = 'in-transit'
+        else:
+            print(f'{self.__status} to \'in-transit\' is not a valid transition')
+
+    def stashed(self):
+        if self.__status == 'in-transit':
+            self.__status = 'in-warehouse'
+        else:
+            print(f'{self.__status} to \'in-warehouse\' is not a valid transition')
+
+    def back_to_service(self):
+        if self.__status == 'in-warehouse':
+            self.__status = 'deploying'
+        else:
+            print(f'{self.__status} to \'in-warehouse\' is not a valid transition')
+
+    def deploy(self):
+        if self.__status == 'deploying':
+            self.__status = 'locked'
+        else:
+            print(f'{self.__status} to \'deploying\' is not a valid transition')
+
     def begin_ride(self):
         if self.__status == 'unlocked':
             self.__status = 'in-ride'

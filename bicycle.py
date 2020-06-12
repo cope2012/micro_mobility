@@ -27,6 +27,12 @@ class Bicycle(Vehicle):
         else:
             print('This bike needs maintenance and therefore it can\'t initiate a ride')
 
+    def back_to_service(self):
+        if not self.maintenance:
+            super().back_to_service()
+        else:
+            print('The bike needs maintenance, can\'t leave warehouse')
+
     def unlock(self):
         if not self.maintenance:
             super().unlock()
@@ -40,7 +46,8 @@ class Bicycle(Vehicle):
 
     def repair(self):
         if self.maintenance:
-            self.__maintenance = False
-            self.__continues_rides = 0
+            if self.status == 'in-warehouse':
+                self.__maintenance = False
+                self.__continues_rides = 0
         else:
             print('this bike doesn\'t need reparation')

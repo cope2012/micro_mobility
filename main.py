@@ -44,7 +44,19 @@ assert b1.maintenance
 b1.unlock()
 assert b1.status == 'locked'
 b1.repair()
+assert b1.maintenance
+b1.pick_up()
+assert b1.status == 'in-transit'
+b1.stashed()
+assert b1.status == 'in-warehouse'
+b1.repair()
 assert not b1.maintenance
+b1.deploy()
+assert b1.status == 'in-warehouse'
+b1.back_to_service()
+assert b1.status == 'deploying'
+b1.deploy()
+assert b1.status == 'locked'
 b1.unlock()
 assert b1.status == 'unlocked'
 b1.begin_ride()
@@ -116,6 +128,17 @@ assert s1.battery == 14
 s1.unlock()
 assert s1.status == 'locked'
 s1.charge()
+assert s1.needs_charge
+s1.pick_up()
+assert s1.status == 'in-transit'
+s1.stashed()
+assert s1.status == 'in-warehouse'
+s1.charge()
+assert not s1.needs_charge
+s1.back_to_service()
+assert s1.status == 'deploying'
+s1.deploy()
+assert s1.status == 'locked'
 s1.unlock()
 assert s1.status == 'unlocked'
 s1.begin_ride()
