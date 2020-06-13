@@ -1,33 +1,12 @@
 from .vehicle import Vehicle
+from .mixins.electric_vehicle import ElectricVehicle
 
 
-class Scooter(Vehicle):
+class Scooter(Vehicle, ElectricVehicle):
     __MAX_SPEED = 35
-    __FULL_CHARGE = 100
 
     def __init__(self, battery=99):
-        super().__init__()
-        self.__battery = battery
-        self.__needs_charge = False
-
-    @property
-    def needs_charge(self):
-        return self.__needs_charge
-
-    @property
-    def battery(self):
-        return self.__battery
-
-    @battery.setter
-    def battery(self, value):
-        self.__needs_charge = value < 15
-
-        if value < 0:
-            self.__battery = 0
-        elif value > 100:
-            self.__battery = 100
-        else:
-            self.__battery = value
+        super().__init__(battery)
 
     @property
     def current_speed(self):
@@ -61,5 +40,4 @@ class Scooter(Vehicle):
 
     def charge(self):
         if self.status == 'in-warehouse':
-            self.__battery = Scooter.__FULL_CHARGE
-            self.__needs_charge = False
+            super().charge()

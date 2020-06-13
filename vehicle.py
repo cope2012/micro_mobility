@@ -4,9 +4,10 @@ class Vehicle:
     #         return super().__new__(cls, *args, **kwargs)
     #     raise TypeError("Class Vehicle may not be instantiated")
 
-    def __init__(self):
+    def __init__(self, *args, **kwargs):
         self.__status = 'locked'
         self._current_speed = 0
+        super().__init__(*args, **kwargs)
 
     @property
     def status(self):
@@ -49,13 +50,14 @@ class Vehicle:
             print(f'{self.__status} to \'in-ride\' is not a valid transition')
 
     def end_ride(self):
-        if self.__status == 'in-ride':
+        if self.__status == 'in-ride' and self._current_speed == 0:
             self.__status = 'locked'
-            self._current_speed = 0
             return True
+        elif self._current_speed != 0:
+            print(f'vehicle must be in a complete stop in order to end the ride')
         else:
             print(f'{self.__status} to \'locked\' is not a valid transition')
-            return False
+        return False
 
     @property
     def current_speed(self):
@@ -63,4 +65,5 @@ class Vehicle:
 
     @current_speed.setter
     def current_speed(self, value):
-        self._current_speed = value
+        if self.__status == 'in-ride':
+            self._current_speed = value

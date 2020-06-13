@@ -4,8 +4,8 @@ from .vehicle import Vehicle
 class Bicycle(Vehicle):
     MAX_NUM_OF_RIDES = 3
 
-    def __init__(self):
-        super().__init__()
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
         self.__maintenance = False
         self.__continues_rides = 0
 
@@ -13,13 +13,17 @@ class Bicycle(Vehicle):
     def maintenance(self):
         return self.__maintenance
 
+    @maintenance.setter
+    def maintenance(self, value):
+        self.__maintenance = value
+
     @property
     def continues_rides(self):
         return self.__continues_rides
 
     def check_maintenance(self):
         if self.continues_rides == Bicycle.MAX_NUM_OF_RIDES:
-            self.__maintenance = True
+            self.maintenance = True
 
     def begin_ride(self):
         if not self.maintenance:
@@ -43,11 +47,13 @@ class Bicycle(Vehicle):
         if super().end_ride():
             self.__continues_rides += 1
             self.check_maintenance()
+            return True
+        return False
 
     def repair(self):
         if self.maintenance:
             if self.status == 'in-warehouse':
-                self.__maintenance = False
+                self.maintenance = False
                 self.__continues_rides = 0
         else:
             print('this bike doesn\'t need reparation')
