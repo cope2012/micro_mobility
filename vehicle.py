@@ -1,8 +1,8 @@
 class Vehicle:
-    # def __new__(cls, *args, **kwargs):
-    #     if cls != Vehicle:
-    #         return super().__new__(cls, *args, **kwargs)
-    #     raise TypeError("Class Vehicle may not be instantiated")
+    def __new__(cls, *args, **kwargs):
+        if cls != Vehicle:
+            return super().__new__(cls, *args, **kwargs)
+        raise TypeError("Class Vehicle may not be instantiated")
 
     def __init__(self, *args, **kwargs):
         self.__status = 'locked'
