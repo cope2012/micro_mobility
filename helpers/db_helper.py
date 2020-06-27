@@ -1,5 +1,6 @@
 import json
 import os
+import MySQLdb
 
 
 def update_db_item(item, instance):
@@ -13,16 +14,12 @@ def update_db_item(item, instance):
 
 
 def update_db(instance):
-    with open(os.path.join(os.path.dirname(__file__), '../db.json'), 'r+') as f:
-        raw_data = f.read()
-        vehicles_data = json.loads(raw_data)
-        updated_data = list(map(
-            lambda x: update_db_item(x, instance) if x['id'] == instance.id
-            else x,
-            vehicles_data['vehicles']
-        ))
-        vehicles_data['vehicles'] = updated_data
-
-        f.seek(0)
-        f.truncate()
-        f.write(json.dumps(vehicles_data))
+    if instance.__class__.__name__ == 'Scooter':
+        db = MySQLdb.connect(user="test", passwd="TestUser2020!", db="mobility-test")
+        c = db.cursor()
+        c.execute("""UPDATE scooter SET 
+        needs_charge = %s, current_speed = %s, status = %s,
+        battery = %s
+        WHERE id = %s""", (instance.needs_charge, instance.current_speed, instance.status, instance.battery, instance.id))
+        db.commit()
+        c.close()

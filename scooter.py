@@ -26,6 +26,7 @@ class Scooter(Vehicle, ElectricVehicle):
             self._current_speed = Scooter.__MAX_SPEED
         else:
             self._current_speed = value
+        self.update_vehicle()
 
     def begin_ride(self):
         super().begin_ride()
