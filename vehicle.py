@@ -8,7 +8,7 @@ class Vehicle:
         raise TypeError("Class Vehicle may not be instantiated")
 
     def __init__(self, *args, **kwargs):
-        self.__id = kwargs['uuid']
+        self.__id = kwargs['_id']
         self.__status = 'locked'
         self._current_speed = 0
         super().__init__(*args, **kwargs)
