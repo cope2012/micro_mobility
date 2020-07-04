@@ -1,10 +1,11 @@
 class ElectricVehicle:
     __FULL_CHARGE = 100
 
-    def __init__(self, battery, *args, **kwargs):
-        self.__battery = battery
+    # def __init__(self, battery, *args, **kwargs):
+    def __init__(self, *args, **kwargs):
+        self.__battery = kwargs['battery']
         self.__needs_charge = False
-        super(ElectricVehicle, self).__init__()
+        super(ElectricVehicle, self).__init__(*args, **kwargs)
 
     @property
     def needs_charge(self):

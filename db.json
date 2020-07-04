@@ -1,1 +1,1 @@
-{"vehicles": [{"id": "ac595ddc-b834-11ea-b294-0560677e1e5c", "type": "scooter", "battery": 90, "status": "locked", "current_speed": 0, "needs_charge": false}, {"id": "d4f1e212-b840-11ea-b294-0560677e1e5c", "type": "scooter", "battery": 100, "status": "locked", "current_speed": 0, "needs_charge": false}]}
+{"vehicles": [{"id": "ac595ddc-b834-11ea-b294-0560677e1e5c", "type": "bicycle", "status": "locked", "current_speed": 0}, {"id": "d4f1e212-b840-11ea-b294-0560677e1e5c", "type": "scooter", "battery": 80, "status": "locked", "current_speed": 0, "needs_charge": false}]}

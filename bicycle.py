@@ -9,6 +9,13 @@ class Bicycle(Vehicle):
         self.__maintenance = False
         self.__continues_rides = 0
 
+    @classmethod
+    def from_db(cls, **kwargs):
+        instance = cls(uuid=kwargs['id'])
+        instance.status = kwargs['status']
+        instance.current_speed = kwargs['current_speed']
+        return instance
+
     @property
     def maintenance(self):
         return self.__maintenance

@@ -11,7 +11,7 @@ class Vehicle:
         self.__id = kwargs['uuid']
         self.__status = 'locked'
         self._current_speed = 0
-        super().__init__(*args, **kwargs)
+        super().__init__()
 
     @property
     def id(self):

@@ -2,11 +2,11 @@ from .vehicle import Vehicle
 from .mixins.electric_vehicle import ElectricVehicle
 
 
-class Scooter(Vehicle, ElectricVehicle):
+class Scooter(ElectricVehicle, Vehicle):
     __MAX_SPEED = 35
 
     def __init__(self, uuid, battery=99):
-        super().__init__(battery, uuid=uuid)
+        super().__init__(battery=battery, uuid=uuid)
 
     @classmethod
     def from_db(cls, **kwargs):
