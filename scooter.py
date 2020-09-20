@@ -1,12 +1,18 @@
-from .vehicle import Vehicle
-from .mixins.electric_vehicle import ElectricVehicle
+from vehicle import Vehicle
+from mixins.electric_vehicle import ElectricVehicle
 
 
 class Scooter(Vehicle, ElectricVehicle):
     __MAX_SPEED = 35
 
-    def __init__(self, battery=99):
-        super().__init__(battery)
+    def __init__(self, uuid, battery=99):
+        super().__init__(battery=battery, uuid=uuid)
+
+    @classmethod
+    def from_db(cls, **kwargs):
+        instance = Scooter(battery=kwargs['battery'], uuid=kwargs['uuid'])
+        # instance.status = kwargs['status']
+        return instance
 
     @property
     def current_speed(self):

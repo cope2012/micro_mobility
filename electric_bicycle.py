@@ -1,5 +1,5 @@
-from .bicycle import Bicycle
-from .mixins.electric_vehicle import ElectricVehicle
+from bicycle import Bicycle
+from mixins.electric_vehicle import ElectricVehicle
 
 
 class ElectricBicycle(Bicycle, ElectricVehicle):

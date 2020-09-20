@@ -1,0 +1,27 @@
+{
+  "vehicles": [
+    {
+      "uuid": "54105696-f4c2-471d-9b3f-9f52b1d0b456",
+      "type": "scooter",
+      "battery": 99,
+      "status": "locked"
+    },
+    {
+      "uuid": "305475c1-7131-4068-9634-7d64ed04b1e7",
+      "type": "scooter",
+      "battery": 99,
+      "status": "locked"
+    },
+    {
+      "uuid": "d360e2a0-ec94-4625-92eb-f13ff612ac6a",
+      "type": "bicycle",
+      "status": "locked"
+    },
+    {
+      "uuid": "ac4ab4fd-0c1d-40ee-950c-857ab6a7702e",
+      "type": "electric-bicycle",
+      "battery": 99,
+      "status": "locked"
+    }
+  ]
+}
